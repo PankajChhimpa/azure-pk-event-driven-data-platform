@@ -2,16 +2,25 @@
 	"name": "raw",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureBlobStorage1",
-			"type": "LinkedServiceReference"
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"fileName": {
+					"value": "@pipeline().parameters.fileName",
+					"type": "Expression"
+				}
+			}
 		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobStorageLocation",
-				"fileName": "@pipeline().parameters.fileName",
-				"container": "raw"
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@pipeline().parameters.fileName",
+					"type": "Expression"
+				},
+				"fileSystem": "raw"
 			}
 		},
 		"schema": {}
