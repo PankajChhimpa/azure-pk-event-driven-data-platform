@@ -3,7 +3,13 @@
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage1",
-			"type": "LinkedServiceReference"
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"fileName": {
+					"value": "@pipeline().parameters.fileName",
+					"type": "Expression"
+				}
+			}
 		},
 		"annotations": [],
 		"type": "Json",
