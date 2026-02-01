@@ -3,19 +3,14 @@
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage1",
-			"type": "LinkedServiceReference",
-			"parameters": {
-				"fileName": {
-					"value": "@pipeline().parameters.fileName",
-					"type": "Expression"
-				}
-			}
+			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation"
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "processed"
 			}
 		},
 		"schema": {}
