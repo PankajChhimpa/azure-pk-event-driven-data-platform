@@ -1,0 +1,9 @@
+{
+	"name": "adf-pk-data-platform-dev",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "dd153506-82a8-4667-9c03-9de029d9d8bb",
+		"tenantId": "d58e3998-8057-4783-b29c-7a8dfd78ef48"
+	}
+}
