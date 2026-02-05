@@ -1,25 +1,22 @@
 import pandas as pd
-from sklearn.ensemble import IsolationForest
-from sklearn.preprocessing import StandardScaler
 import joblib
+import os
 
-# load features
-X = pd.read_csv("finance_features.csv")
+# ADLS path (processed zone)
+DATA_PATH = "/mnt/azureml/finance_features.csv"  # placeholder
 
-# scale data
-scaler = StandardScaler()
-X_scaled = scaler.fit_transform(X)
+# If using datastore mount, Azure ML will mount it here
+df = pd.read_csv(DATA_PATH)
 
-# train model
-model = IsolationForest(
-    n_estimators=200,
-    contamination=0.02,
-    random_state=42
-)
-model.fit(X_scaled)
+X = df.drop("target", axis=1)
+y = df["target"]
 
-# save model + scaler
-joblib.dump(model, "anomaly_model.pkl")
-joblib.dump(scaler, "scaler.pkl")
+from sklearn.linear_model import LogisticRegression
+model = LogisticRegression(max_iter=1000)
+model.fit(X, y)
 
-print("Model trained and saved")
+os.makedirs("outputs", exist_ok=True)
+joblib.dump(model, "outputs/model.pkl")
+
+print("Model training complete")
+int(f"MODEL_ACCURACY: {accuracy}")
